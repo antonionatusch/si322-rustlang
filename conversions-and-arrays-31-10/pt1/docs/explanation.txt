@@ -1,0 +1,18 @@
+# Ventajas de rust
+    Al ser un lenguaje compilado, garantiza un alto rendimiento.
+    Proporciona abstracciones que facilitan en gran medida el trabajo del programador.
+    Como es un software libre y de código abierto, cualquiera puede usarlo.
+    Permite, además, crear bibliotecas.
+    Posee una sintaxis muy parecida a la de C y C++.
+
+# ¿Para qué sirve?
+  Rust se creó para tener la posibilidad de alcanzar la velocidad de C++, pero evitando los problemas de memoria y minimizando los errores en el código.
+
+  Hoy en día, este es el lenguaje sobre el que se soporta gran parte de Servo, el navegador de Firefox. Maneja una sintaxis moderna, que lo vuelve apropiado para la ejecución de aplicaciones web a una velocidad muy cercana a las apps nativas.
+
+  Al ser un lenguaje multipropósito, que va más allá del desarrollo interno de un navegador, Rust cuenta con herramientas para crear APIs, clientes HTTP y conectores de base de datos. Se emplea para programar aplicaciones con sistemas embebidos que son usados para ejecutar tareas de control a un costo de tamaño muy bajo.
+
+  Dentro de las empresas más reconocidas que utilizan Rust en sus desarrollos se cuentan: Amazon Web Services, Microsoft, Meta, y Google (en Android y en Google Cloud).
+
+Tipos escalares rust:
+  Un tipo escalar representa un solo valor. Rust tiene cuatro tipos escalares principales: enteros, números de punto flotante, booleanos y caracteres. Puede reconocerlos de otros lenguajes de programación. Vamos a ver cómo funcionan en Rust.
