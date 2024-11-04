@@ -1,0 +1,45 @@
+  Ya hemos visto literales de cadena, donde un valor de cadena está codificado en nuestro programa. Los literales de cadena son convenientes, pero no son adecuados para todas las situaciones en las que podríamos querer usar texto. Una razón es que son inmutables. Otra es que no todos los valores de cadena se pueden conocer cuando escribimos nuestro código: ¿y si queremos tomar la entrada del usuario y almacenarla? Para estas situaciones, Rust tiene un segundo tipo de cadena, String. Este tipo administra datos asignados en el heap y, como tal, es capaz de almacenar una cantidad de texto que no conocemos en el tiempo de compilación. Puede crear un String a partir de un literal de cadena usando la función from, así:
+
+fn main() {
+    let s = String::from("hola");
+}
+
+El operador doble dos puntos :: nos permite usar el namespace (nombre de espacio) de esta función from particular bajo el tipo String en lugar de usar algún tipo de nombre como string_from.
+
+Este tipo de cadena puede ser mutable:
+
+fn main() {
+    let mut s = String::from("hola");
+    s.push_str(", mundo!"); // push_str() agrega un literal a un String
+    println!("{s}"); // ¡Esto imprime "hola, mundo!"
+}
+
+Los literales de cadena son aquellos definidos de manera estática. Pueden ser convenientes pero no se adecúan para cada situación
+en particular.
+
+Lo bueno de esto es que no necesito conocer el tiempo del string en compilación, simplemente mandar el valor que quiero o necesito.
+
+La forma de ilustrar el concepto de ownership se puede ver en el main.rs, concretamente en su intento de ejecución.
+❯ cargo run
+   Compiling ownership-demo v0.1.0 (/home/tusch/Desktop/rust-stuff/si322-rustlang/ownership-demo)
+error[E0382]: borrow of moved value: `_s1`
+ --> src/main.rs:5:15
+  |
+2 |     let _s1 = String::from("Hola");
+  |         --- move occurs because `_s1` has type `String`, which does not implement the `Copy` trait
+3 |     let _s2 = _s1;
+  |               --- value moved here
+4 |     println!("{_s2}");
+5 |     println!("{_s1}");
+  |               ^^^^^ value borrowed here after move
+  |
+  = note: this error originates in the macro `$crate::format_args_nl` which comes from the expansion of the macro `println` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider cloning the value if the performance cost is acceptable
+  |
+3 |     let _s2 = _s1.clone();
+  |                  ++++++++
+
+For more information about this error, try `rustc --explain E0382`.
+
+
+Para garantizar la seguridad de la memoria, después de let _s2 = _s1, se considera a s1 como no váida (se salió del ámbito).

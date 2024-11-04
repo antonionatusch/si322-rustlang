@@ -1,0 +1,33 @@
+El ownership es un conjunto de reglas que determinan cómo es que Rust administra la memoria.
+Todos los lenguajes de programación tienen alguna forma de gestionar la memoria.
+Rust nos indica que mejora la gestión de la memoria respecto a otros lenguajes.
+Algunos lenguajes tienen el recolector de basura (C#, Java), de tal manera que no hay memoria sin liberar.
+Rust usa otro enfoque; se administra a través de este conjunto de reglas que el compilador verifica.
+Si alguna de las reglas no se cumple, el programa no compila, lo que permite detectar estos errores sin ralentizar el sistema.
+Veremos 3 reglas:
+* Cada valor en Rust tiene un propietario.
+* Solo puede haber un propietario a la vez.
+* Cuando el propietario sale del alcance, el valor se descartará.
+
+
+Es importante revisar los conceptos:
+    Stack: Almacena valores en el orden LIFO. Almacena valores primitivos o cosas que puedo copiar. Todo lo almacenado
+    ahí es de tamaño conocido y fijo.
+    Cuando quiero almacenar un tamaño fijo y seguro que sé que no va a cambiar, lo almaceno ahí.
+
+    Heap: El heap es menos organizado, ya que aquí el administrador solicita una cierta cantidad de espacio.
+    La asignación es dinámica pero la forma de llegar a él es estática, puesto que al realizar esta asignación
+    se devuelve un puntero y se almacena en el stack. Cuando se quiere acceder a los datos reales, se debe seguir al puntero
+    que apunta a la primera dirección del espacio de memoria asignado.
+
+*** OWNERSHIP ***
+El principal propósito del ownership es administrar datos en el heap.
+
+fn main() {
+    // s no es válido aquí, aún no está declarado
+    let s = "hola"; // s es válido desde aquí
+    // Hacer algo con s
+} // este ámbito termina aquí, s ya no es válido
+
+
+En este punto, la relación entre los contextos de ejecución y cuándo las variables son válidas es similar a la de otros lenguajes de programación. Ahora construiremos sobre este entendimiento al introducir el tipo String.
